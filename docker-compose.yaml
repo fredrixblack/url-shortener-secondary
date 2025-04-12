@@ -1,0 +1,42 @@
+version: '3.8'
+services:
+  redirection-service:
+    image: redirection-service
+    build: ./redirection-service
+    ports:
+      - "8001:8001"
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - VM1_HOST=10.0.0.1  # Replace with VM1's IP or domain
+    depends_on:
+      - redis
+    networks:
+      - secondary-net
+
+  analytics-service:
+    image: analytics-service
+    build: ./analytics-service
+    ports:
+      - "3001:3001"
+    networks:
+      - secondary-net
+
+  frontend:
+    image: frontend
+    build: ./frontend
+    ports:
+      - "80:80"
+    networks:
+      - secondary-net
+
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+    networks:
+      - secondary-net
+
+networks:
+  secondary-net:
+    driver: bridge
