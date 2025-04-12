@@ -1,0 +1,9 @@
+[submodule "analytics-service"]
+	path = analytics-service
+	url = https://github.com/fredrixblack/analytics-service
+[submodule "frontend"]
+	path = frontend
+	url = https://github.com/fredrixblack/frontend.git
+[submodule "redirection-service"]
+	path = redirection-service
+	url = https://github.com/fredrixblack/redirection-service.git
