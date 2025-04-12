@@ -1,4 +1,3 @@
-version: '3.8'
 services:
   redirection-service:
     image: redirection-service
@@ -26,9 +25,12 @@ services:
     image: frontend
     build: ./frontend
     ports:
-      - "80:80"
+      - "80:3000"
+    environment:
+      - API_URL=http://10.0.0.1/auth
     networks:
       - secondary-net
+
 
   redis:
     image: redis:7
